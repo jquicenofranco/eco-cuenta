@@ -16,11 +16,11 @@
                         @if(currentQuestion) {
                             <h2>{{ currentQuestion.question }}</h2>
 
-                            @for (answer of currentQuestion.answers; track answer; let i = $index) {
+                            @for (answerq of currentQuestion.answers; track answerq; let i = $index) {
                                 <div class="form-check">
-                                    <input type="radio" [id]="'option' + i" [value]="answer" [(ngModel)]="selectedAnswer"
+                                    <input type="radio" [id]="'option' + i" [value]="answerq.answer" [(ngModel)]="selectedAnswer"
                                         name="answer">
-                                    <label [for]="'option' + i">{{ answer }}</label>
+                                    <label [for]="'option' + i">{{ answerq.answer }}</label>
                                 </div>
                             }
                         }

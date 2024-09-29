@@ -1,10 +1,12 @@
 {
   "name": "ecocuenta-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Herramienta para calcular el impacto ambiental de acuerdo al usop de los servicios publicos",
+  "author": "Juan Camilo Quiceno",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href=\\ecocuenta\\ --output-hashing=all --build-optimizer --aot",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
