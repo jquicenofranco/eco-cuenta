@@ -1,4 +1,4 @@
-import { IAnswer } from "./interfaces";
+import { IAnswer, IAnswerSelected } from "./interfaces";
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/data.source";
 
@@ -6,15 +6,12 @@ class Answer extends Model<IAnswer> implements IAnswer {
     public id!: number;
     public userName!: string;
     public userEmail!: string;
-    public question!: string;
-    public answer!: string;
-    public weight!: number;
+    public answerSelected!: IAnswerSelected[];
 }
 
 Answer.init({
     id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true
     },
@@ -26,16 +23,8 @@ Answer.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    question: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    },
-    answer: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    weight: {
-        type: DataTypes.INTEGER,
+    answerSelected: {
+        type: DataTypes.JSONB,
         allowNull: false
     },
 }, {

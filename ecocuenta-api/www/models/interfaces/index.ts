@@ -1,5 +1,5 @@
 //Interfaces
-export { IAnswer } from "./answer";
+export { IAnswer, IAnswerSelected } from "./answer";
 export { IAnswerQ, IQuestion } from "./question";
 export { ICustomSearch } from "./Icustom-search.interface";
 export { IDatosServicio } from "./Idatos-servicio.interface";
