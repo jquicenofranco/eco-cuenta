@@ -5,6 +5,7 @@ import { Routes } from '@angular/router';
 import { WhatIsComponent } from './components/what-is/what-is.component';
 
 export const routes: Routes = [
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '*', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'whatis', component: WhatIsComponent },

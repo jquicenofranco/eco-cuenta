@@ -1,9 +1,12 @@
+import { AnswerService } from '../../services/answer.service';
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IAnswer, IAnswerSelected } from '../../interfaces/answer/answer.interface';
 import { IQuestion } from '../../interfaces/question/question.interface';
 import { Observable, of } from 'rxjs';
 import { QuestionService } from '../../services/question.service';
+import { UserInfoDialogService } from '../../services/user-dialog.service';
 
 @Component({
   selector: 'app-calculator',
@@ -15,19 +18,22 @@ import { QuestionService } from '../../services/question.service';
   styleUrl: './calculator.component.css',
 })
 export class CalculatorComponent implements OnInit {
-  answers: Map<number, string> = new Map();
+  answers: Map<number, IAnswerSelected> = new Map<number, IAnswerSelected>();
   carbonValue: number = 0;
   currentQuestion: IQuestion | null = null;
   currentQuestionIndex: number = 0;
   questions: IQuestion[] = [];
-  selectedAnswer: string | null = null;
-  selectedPointAnswer: string | null = null;
+  selectedAnswer: IAnswerSelected | null = null;
   errormessageclass = 'error-message-display-none';
   showCalculateBotton = false;
 
   fillColor: string = 'rgb(0%,0%,0%)';
 
-  constructor(private _questionService: QuestionService) { }
+  constructor(
+    private _answerService: AnswerService,
+    private _questionService: QuestionService,
+    private _userInfoDialog: UserInfoDialogService
+  ) { }
 
   ngOnInit(): void {
     this.updateThermometer();
@@ -41,10 +47,15 @@ export class CalculatorComponent implements OnInit {
   prevQuestion() {
     if (this.currentQuestionIndex > 0) {
       this.currentQuestionIndex--;
-      this.carbonValue -= 10;
       this.showQuestion(this.currentQuestionIndex);
       // Seleccionar la respuesta previa si existe
       this.selectedAnswer = this.answers.get(this.currentQuestionIndex) || null;
+
+      if (this.selectedAnswer != null) {
+        const question = this.questions[this.currentQuestionIndex];
+        const weightAnswer = question.answers.find(a => a.answer == this.selectedAnswer?.answer)?.weight || null;
+        this.carbonValue -= weightAnswer || 0;
+      }
     }
 
     this.showCalculateBotton = false;
@@ -58,7 +69,7 @@ export class CalculatorComponent implements OnInit {
       if (this.currentQuestionIndex <= this.questions.length) {
         if (this.selectedAnswer != null) {
           const question = this.questions[this.currentQuestionIndex];
-          const weightAnswer = question.answers.find(a => a.answer === this.selectedAnswer)?.weight || null;
+          const weightAnswer = question.answers.find(a => a.answer == this.selectedAnswer?.answer)?.weight || null;
           this.carbonValue += weightAnswer || 0;
         }
 
@@ -79,15 +90,51 @@ export class CalculatorComponent implements OnInit {
   calculate() {
     if (this.validateAnswer()) {
       this.saveAnswer();
-      localStorage.setItem('quizAnswers', JSON.stringify(this.answers));
+      this.openDialog();
     }
   }
 
   resetQuiz() {
     localStorage.removeItem('quizAnswers');
-    this.answers = new Map();
+    this.answers.clear();
     this.currentQuestionIndex = 0;
+    this.carbonValue = 0;
+    this.fillColor = 'rgb(0%,0%,0%)';
     this.showQuestion(this.currentQuestionIndex);
+  }
+
+  private openDialog() {
+    const obj = Object.fromEntries(this.answers);
+    const answerSelected = Object.entries(obj).map(([key, value]) => ({ ...value }));
+    const storedData = localStorage.getItem('userInfo');
+    let answer: IAnswer = { userName: '', userEmail: '', answerSelected };
+
+    if (storedData) {
+      const userInfo = JSON.parse(storedData);
+      answer.userName = userInfo.name;
+      answer.userEmail = userInfo.email;
+      this.CalculateAnswer(answer);
+      return;
+    }
+
+    this._userInfoDialog.openUserInfoDialog().subscribe(result => {
+      if (result === false) {
+        console.log('Diálogo cerrado sin enviar');
+      } else if (result) {
+        answer.userName = result.name;
+        answer.userEmail = result.email;
+        this.CalculateAnswer(answer);
+
+        localStorage.setItem('userInfo', JSON.stringify(result));
+        localStorage.setItem('quizAnswers', JSON.stringify(this.answers));
+      }
+    });
+  }
+
+  private CalculateAnswer(answer: IAnswer) {
+    this._answerService.CalculateAnswer(answer).subscribe((r => {
+      this.currentQuestion = { id: 1, question: r, answers: [] };
+    }));
   }
 
   private getColor(value: number): number[] {

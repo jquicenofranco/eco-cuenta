@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ecocuenta-web",
+            "outputPath": "dist/public",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -27,6 +27,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
@@ -37,11 +38,12 @@
           },
           "configurations": {
             "production": {
+              "optimization": false,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "4MB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -95,6 +97,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
             "scripts": []

@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Información de Usuario</h2>
+<mat-dialog-content>
+    <form #userForm="ngForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="data.name" name="name" required #name="ngModel">
+            <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+                El nombre es requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput [(ngModel)]="data.email" name="email" required email #email="ngModel">
+            <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                Ingrese un correo electrónico válido
+            </mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cerrar</button>
+    <button mat-button color="primary" [disabled]="!userForm.form.valid" (click)="onSubmit()">Aceptar</button>
+</mat-dialog-actions>

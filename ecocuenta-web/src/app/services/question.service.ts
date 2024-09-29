@@ -16,7 +16,6 @@ export class QuestionService extends BaseService {
   set questions(value: IQuestion[]) {
     this._questions.next(value);
   }
-
   get questions$(): Observable<IQuestion[]> {
     return this._questions.asObservable();
   }
