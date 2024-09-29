@@ -1,0 +1,15 @@
+body {
+    padding-top: 50px;
+}
+
+#questionContainer {
+    min-height: 200px;
+}
+
+.error-message-display-none {
+    display: none;
+}
+
+.error-message-display {
+    color: red;
+}
