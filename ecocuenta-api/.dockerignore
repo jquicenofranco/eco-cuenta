@@ -1,0 +1,4 @@
+.dist/npm-debug.log
+.dist/.env
+.dist/package.json
+.dist/package-lock.json

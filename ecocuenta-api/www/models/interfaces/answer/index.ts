@@ -1,0 +1,1 @@
+export { IAnswer } from "./answer.interface";

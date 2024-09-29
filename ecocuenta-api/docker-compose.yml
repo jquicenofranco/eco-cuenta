@@ -1,0 +1,64 @@
+version: '3.9'
+
+services:
+  ecocuenta_app_container:
+    container_name: ecocuenta_app_container
+    build:
+      context: .
+    restart: always
+    environment:
+      TZ: America/Bogota
+      PORT: "5071"
+      URLGESTOR: "http://gestor_app_container:8080/api/"
+      DB_SCHEMA: ecocuenta_db
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ecocuenta_pg_container
+      PRIVATE_KEY: ${PRIVATE_KEY}
+      TOOL_KEY: ${TOOL_KEY}
+      ID_SERVICIO_ECOCUENTA: ${ID_SERVICIO_ECOCUENTA}
+    volumes:
+      - ./dist:/usr/src/app/
+    depends_on:
+      ecocuenta_pg_container:
+        condition: service_healthy
+    ports:
+      - "5071:5071"
+    command: node app.js
+    networks:
+      - gestordeaplicaciones-network
+      - ecocuenta-network
+
+  ecocuenta_pg_container:
+    container_name: ecocuenta_pg_container
+    image: postgres:14.9-alpine
+    restart: always
+    environment:
+      TZ: America/Bogota
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ecocuenta_db
+    expose:
+      - '5432'
+    volumes:
+      - ecocuenta-db:/var/lib/postgresql/data
+      # copy the sql script to create tables
+      - ./sql/ecocuenta.sql:/docker-entrypoint-initdb.d/ecocuenta.sql
+    healthcheck:
+      # Agregar la configuración de healthcheck
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - gestordeaplicaciones-network
+      - ecocuenta-network
+
+volumes:
+  ecocuenta-db:
+
+
+networks:
+  ecocuenta-network:
+  gestordeaplicaciones-network:
+    external: true
