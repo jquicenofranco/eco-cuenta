@@ -16,14 +16,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE ONLY public.questions DROP CONSTRAINT questions_pkey;
-ALTER TABLE ONLY public.answers DROP CONSTRAINT answers_pkey;
-ALTER TABLE public.questions ALTER COLUMN id DROP DEFAULT;
-ALTER TABLE public.answers ALTER COLUMN id DROP DEFAULT;
-DROP SEQUENCE public.questions_id_seq;
-DROP TABLE public.questions;
-DROP SEQUENCE public.answers_id_seq;
-DROP TABLE public.answers;
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -36,9 +28,7 @@ CREATE TABLE public.answers (
     id integer NOT NULL,
     "userName" character varying NOT NULL,
     "userEmail" character varying NOT NULL,
-    question text NOT NULL,
-    answer text NOT NULL,
-    weight integer NOT NULL
+    "answerSelected" jsonb NOT NULL
 );
 
 
@@ -113,36 +103,6 @@ ALTER TABLE ONLY public.answers ALTER COLUMN id SET DEFAULT nextval('public.answ
 --
 
 ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.questions_id_seq'::regclass);
-
-
---
--- Data for Name: answers; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.answers (id, "userName", "userEmail", question, answer, weight) FROM stdin;
-\.
-
-
---
--- Data for Name: questions; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.questions (id, question, answers) FROM stdin;
-\.
-
-
---
--- Name: answers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.answers_id_seq', 1, false);
-
-
---
--- Name: questions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.questions_id_seq', 1, false);
 
 
 --
