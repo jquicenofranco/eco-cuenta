@@ -4,18 +4,20 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IAnswer, IAnswerSelected } from '../../interfaces/answer/answer.interface';
 import { IQuestion } from '../../interfaces/question/question.interface';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { QuestionService } from '../../services/question.service';
-import { UserInfoDialogService } from '../../services/user-dialog.service';
+import { UserDialogComponent } from '../user-dialog/user-dialog.component';
+import { SuggestionDialogComponent } from '../suggestion-dialog/suggestion-dialog.component';
 
 @Component({
   selector: 'app-calculator',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.css',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalculatorComponent implements OnInit {
   answers: Map<number, IAnswerSelected> = new Map<number, IAnswerSelected>();
@@ -30,9 +32,9 @@ export class CalculatorComponent implements OnInit {
   fillColor: string = 'rgb(0%,0%,0%)';
 
   constructor(
+    private dialog: MatDialog,
     private _answerService: AnswerService,
-    private _questionService: QuestionService,
-    private _userInfoDialog: UserInfoDialogService
+    private _questionService: QuestionService
   ) { }
 
   ngOnInit(): void {
@@ -103,6 +105,24 @@ export class CalculatorComponent implements OnInit {
     this.showQuestion(this.currentQuestionIndex);
   }
 
+  private openUserInfoDialog() {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      width: '300px',
+      data: { name: '', email: '' }
+    });
+
+    return dialogRef.afterClosed();
+  }
+
+  private openSuggestionsDialog(suggestions: string) {
+    const dialogRef = this.dialog.open(SuggestionDialogComponent, {
+      width: 'auto',
+      data: { text: suggestions }
+    });
+
+    return dialogRef.afterClosed();
+  }
+
   private openDialog() {
     const obj = Object.fromEntries(this.answers);
     const answerSelected = Object.entries(obj).map(([key, value]) => ({ ...value }));
@@ -117,7 +137,7 @@ export class CalculatorComponent implements OnInit {
       return;
     }
 
-    this._userInfoDialog.openUserInfoDialog().subscribe(result => {
+    this.openUserInfoDialog().subscribe(result => {
       if (result === false) {
         console.log('Diálogo cerrado sin enviar');
       } else if (result) {
@@ -133,7 +153,8 @@ export class CalculatorComponent implements OnInit {
 
   private CalculateAnswer(answer: IAnswer) {
     this._answerService.CalculateAnswer(answer).subscribe((r => {
-      this.currentQuestion = { id: 1, question: r, answers: [] };
+      this.openSuggestionsDialog(r);
+      this.resetQuiz();
     }));
   }
 
