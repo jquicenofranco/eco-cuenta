@@ -56,7 +56,7 @@ export class CalculatorComponent implements OnInit {
       if (this.selectedAnswer != null) {
         const question = this.questions[this.currentQuestionIndex];
         const weightAnswer = question.answers.find(a => a.answer == this.selectedAnswer?.answer)?.weight || null;
-        this.carbonValue -= weightAnswer || 0;
+        this.carbonValue -= (weightAnswer || 0) * 5;
       }
     }
 
@@ -72,7 +72,7 @@ export class CalculatorComponent implements OnInit {
         if (this.selectedAnswer != null) {
           const question = this.questions[this.currentQuestionIndex];
           const weightAnswer = question.answers.find(a => a.answer == this.selectedAnswer?.answer)?.weight || null;
-          this.carbonValue += weightAnswer || 0;
+          this.carbonValue += (weightAnswer || 0) * 5;
         }
 
         this.currentQuestionIndex++;
@@ -129,13 +129,13 @@ export class CalculatorComponent implements OnInit {
     const storedData = localStorage.getItem('userInfo');
     let answer: IAnswer = { userName: '', userEmail: '', answerSelected };
 
-    if (storedData) {
-      const userInfo = JSON.parse(storedData);
-      answer.userName = userInfo.name;
-      answer.userEmail = userInfo.email;
-      this.CalculateAnswer(answer);
-      return;
-    }
+    // if (storedData) {
+    //   const userInfo = JSON.parse(storedData);
+    //   answer.userName = userInfo.name;
+    //   answer.userEmail = userInfo.email;
+    //   this.CalculateAnswer(answer);
+    //   return;
+    // }
 
     this.openUserInfoDialog().subscribe(result => {
       if (result === false) {
