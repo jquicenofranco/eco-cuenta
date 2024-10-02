@@ -11,12 +11,14 @@
     <!-- Portfolio Grid Items-->
     <div class="row justify-content-center">
       <!-- Portfolio Item 1-->
-      <div class="col-md-2 col-lg-4 mb-5">
+      <div class="col-md-6 col-lg-4 mb-5">
         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#whatisModela1">
           <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
             <div class="portfolio-item-caption-content text-center text-black">Acueducto💧</div>
           </div>
-          <img class="img-fluid" src="images/tuberia.svg" alt="..." />
+          <div class="svg-container">
+            <img class="svg-content" src="images/agua.svg" alt="" />
+          </div>
         </div>
       </div>
       <!-- Portfolio Item 2-->
@@ -25,7 +27,9 @@
           <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
             <div class="portfolio-item-caption-content text-center text-black">Alcantarillado🚽</div>
           </div>
-          <img class="img-fluid" src="images/planeta.svg" alt="..." />
+          <div class="svg-container">
+            <img class="svg-content" src="images/acueducto.svg" alt="" />
+          </div>
         </div>
       </div>
       <!-- Portfolio Item 3-->
@@ -34,25 +38,31 @@
           <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
             <div class="portfolio-item-caption-content text-center text-black">Gas🔥</div>
           </div>
-          <img class="img-fluid" src="images/panel_solar.svg" alt="..." />
+          <div class="svg-container">
+            <img class="svg-content" src="images/gas_domiciliario.svg" alt="Gas domiciliario" />
+          </div>
         </div>
       </div>
       <!-- Portfolio Item 4-->
-      <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+      <div class="col-md-6 col-lg-4 mb-5">
         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#whatisModela4">
           <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
             <div class="portfolio-item-caption-content text-center text-black">Energía⚡</div>
           </div>
-          <img class="img-fluid" src="images/bombillo.svg" alt="..." />
+          <div class="svg-container">
+            <img class="svg-content" src="images/energia.svg" alt="" />
+          </div>
         </div>
       </div>
       <!-- Portfolio Item 5-->
-      <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+      <div class="col-md-6 col-lg-4 mb-5">
         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#whatisModela5">
           <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
             <div class="portfolio-item-caption-content text-center text-black">Aséo🗑️</div>
           </div>
-          <img class="img-fluid" src="images/caneca_basura.svg" alt="..." />
+          <div class="svg-container">
+            <img class="svg-content" src="images/carro_basura.svg" alt="" />
+          </div>
         </div>
       </div>
     </div>
@@ -80,7 +90,7 @@
                 <div class="divider-custom-line"></div>
               </div>
               <!-- Portfolio Modal - Image-->
-              <img class="img-fluid rounded mb-5" src="images/portfolio/cabin.png" alt="..." />
+              <img class="img-fluid rounded mb-5" src="images/agua.svg" alt="" />
               <!-- Portfolio Modal - Text-->
               <p class="mb-4">Tu consumo de agua potable y cómo afecta los recursos hídricos.</p>
               <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -115,7 +125,7 @@
                 <div class="divider-custom-line"></div>
               </div>
               <!-- Portfolio Modal - Image-->
-              <img class="img-fluid rounded mb-5" src="images/portfolio/cabin.png" alt="..." />
+              <img class="img-fluid rounded mb-5" src="images/acueducto.svg" alt="" />
               <!-- Portfolio Modal - Text-->
               <p class="mb-4">El manejo de aguas residuales y su impacto en los ecosistemas acuáticos.</p>
               <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -150,7 +160,7 @@
                 <div class="divider-custom-line"></div>
               </div>
               <!-- Portfolio Modal - Image-->
-              <img class="img-fluid rounded mb-5" src="images/portfolio/cabin.png" alt="..." />
+              <img class="img-fluid rounded mb-5" src="images/gas_domiciliario.svg" alt="" />
               <!-- Portfolio Modal - Text-->
               <p class="mb-4">Tu uso de gas natural o propano y su contribución a la huella de carbono.</p>
               <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -185,10 +195,45 @@
                 <div class="divider-custom-line"></div>
               </div>
               <!-- Portfolio Modal - Image-->
-              <img class="img-fluid rounded mb-5" src="images/portfolio/cabin.png" alt="..." />
+              <img class="img-fluid rounded mb-5" src="images/energia.svg" alt="" />
               <!-- Portfolio Modal - Text-->
               <p class="mb-4">El consumo eléctrico en tu hogar y su relación con la emisión de gases de efecto
                 invernadero.</p>
+              <button class="btn btn-primary" data-bs-dismiss="modal">
+                <i class="fas fa-xmark fa-fw"></i>
+                Cerrar ventana
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Portfolio Modal 5-->
+<div class="portfolio-modal modal fade" id="whatisModela5" tabindex="-1" aria-labelledby="whatisModela4"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+          aria-label="Close"></button></div>
+      <div class="modal-body text-center pb-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- Portfolio Modal - Title-->
+              <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Aséo🗑️</h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <!-- Portfolio Modal - Image-->
+              <img class="img-fluid rounded mb-5" src="images/carro_basura.svg" alt="" />
+              <!-- Portfolio Modal - Text-->
+              <p class="mb-4"></p>
               <button class="btn btn-primary" data-bs-dismiss="modal">
                 <i class="fas fa-xmark fa-fw"></i>
                 Cerrar ventana

@@ -1,0 +1,35 @@
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* Aspecto cuadrado, ajusta según necesites */
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.svg-content {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Mantiene la proporción del SVG */
+}
+
+/* Media queries para ajustar el tamaño en diferentes pantallas */
+@media (min-width: 768px) {
+    .svg-container {
+        padding-bottom: 75%;
+        /* Más pequeño en pantallas medianas */
+    }
+}
+
+@media (min-width: 992px) {
+    .svg-container {
+        padding-bottom: 100%;
+        /* Vuelve a ser cuadrado en pantallas grandes */
+    }
+}
