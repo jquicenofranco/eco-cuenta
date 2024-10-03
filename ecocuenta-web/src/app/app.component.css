@@ -1,0 +1,17 @@
+.watermark::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    /* Ajuste para compensar el tamaño mayor */
+    left: -50%;
+    width: 200%;
+    /* Doble del tamaño para permitir rotación */
+    height: 200%;
+    background-image: var(--background-image);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: -1;
+}
