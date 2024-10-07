@@ -1,4 +1,30 @@
-.mundo {
+/* .mundo {
     width: 30%;
     height: auto;
+} */
+
+.page-section {
+    position: relative;
+    height: 100vh;
+    /* Usa toda la altura de la ventana */
+    width: 100%;
+    padding: 0;
+    /* Elimina el padding si existe */
+}
+
+.container {
+    height: 100%;
+    /* Ocupa toda la altura del padre */
+    padding: 0;
+    /* Elimina el padding del contenedor */
+}
+
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    clip: rect(0vh, 200vh, 92vh, 0vh);
 }
