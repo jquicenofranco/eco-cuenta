@@ -28,8 +28,7 @@ export class CalculatorComponent implements OnInit {
   selectedAnswer: IAnswerSelected | null = null;
   errormessageclass = 'error-message-display-none';
   showCalculateBotton = false;
-
-  fillColor: string = 'rgb(0%,0%,0%)';
+  imageSrc: string = 'assets/bajo.png';
 
   constructor(
     private dialog: MatDialog,
@@ -101,7 +100,7 @@ export class CalculatorComponent implements OnInit {
     this.answers.clear();
     this.currentQuestionIndex = 0;
     this.carbonValue = 0;
-    this.fillColor = 'rgb(0%,0%,0%)';
+    this.imageSrc = 'assets/bajo.png';
     this.showQuestion(this.currentQuestionIndex);
   }
 
@@ -114,10 +113,10 @@ export class CalculatorComponent implements OnInit {
     return dialogRef.afterClosed();
   }
 
-  private openSuggestionsDialog(suggestions: string) {
+  private openSuggestionsDialog(suggestions: { level: string, recommendations: string }) {
     const dialogRef = this.dialog.open(SuggestionDialogComponent, {
       width: 'auto',
-      data: { text: suggestions }
+      data: { suggestions }
     });
 
     return dialogRef.afterClosed();
@@ -152,39 +151,26 @@ export class CalculatorComponent implements OnInit {
   }
 
   private CalculateAnswer(answer: IAnswer) {
-    this._answerService.CalculateAnswer(answer).subscribe((r => {
-      this.openSuggestionsDialog(r);
-      this.resetQuiz();
-    }));
-  }
-
-  private getColor(value: number): number[] {
-    if (value <= 25) {
-      return [0, 255, 0]; // Verde
-    } else if (value <= 50) {
-      return [255, 255, 0]; // Amarillo
-    } else if (value <= 75) {
-      return [255, 165, 0]; // Naranja
-    } else {
-      return [255, 0, 0]; // Rojo
-    }
-  }
-
-  private interpolateColor(color1: number[], color2: number[], factor: number): string {
-    const result = color1.map((c, i) => Math.round(c + factor * (color2[i] - c)));
-    return `rgb(${result[0]}, ${result[1]}, ${result[2]})`;
+    this._answerService
+      .CalculateAnswer(answer)
+      .subscribe((r => {
+        this.openSuggestionsDialog(r);
+        this.resetQuiz();
+      }));
   }
 
   private updateThermometer() {
     if (this.carbonValue == 0) return;
 
-    const value = this.carbonValue;
-    const baseColor = this.getColor(Math.floor(value / 25) * 25);
-    const nextColor = this.getColor(Math.min(Math.ceil(value / 25) * 25, 100));
-    const interpolationFactor = (value % 25) / 25;
-
-    const color = this.interpolateColor(baseColor, nextColor, interpolationFactor);
-    this.fillColor = color;
+    if (this.carbonValue < 100) {
+      this.imageSrc = 'assets/bajo.png';
+    } else if (this.carbonValue >= 100 && this.carbonValue < 170) {
+      this.imageSrc = 'assets/medio.png';
+    } else if (this.carbonValue >= 170 && this.carbonValue < 200) {
+      this.imageSrc = 'assets/medio-alto.png';
+    } else {
+      this.imageSrc = 'assets/alto.png';
+    }
   }
 
   private validateAnswer(): boolean {

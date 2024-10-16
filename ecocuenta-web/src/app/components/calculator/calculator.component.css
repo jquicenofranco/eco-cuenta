@@ -13,3 +13,8 @@ body {
 .error-message-display {
     color: red;
 }
+
+.responsive-image {
+    max-width: 30%;
+    height: auto;
+  }

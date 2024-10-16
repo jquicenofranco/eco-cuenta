@@ -59,7 +59,7 @@ export class AnswerController {
         return { level, recommendations };
     }
 
-    private provideDetailedFeedback(totalWeight: number): string {
+    private provideDetailedFeedback(totalWeight: number): { level: string, recommendations: string } {
         const { level, recommendations } = this.evaluateImpact(totalWeight);
 
         let feedback = `Tu impacto ecológico es de nivel ${level}.\n\n`;
@@ -67,6 +67,6 @@ export class AnswerController {
         recommendations.forEach((recommendation, index) => {
             feedback += `${index + 1}. ${recommendation}\n`;
         });
-        return feedback;
+        return { level, recommendations: feedback };
     }
 }

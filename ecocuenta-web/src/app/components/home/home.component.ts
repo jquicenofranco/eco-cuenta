@@ -11,5 +11,4 @@ import { SharedModule } from '../../shared/shared.module';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  urlReporte = 'https://view.genially.com/66fef5e8fc1a448482935077/interactive-content-genially-sin-titulo';
 }

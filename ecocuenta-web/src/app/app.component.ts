@@ -14,11 +14,8 @@ export class AppComponent {
   title = 'ecocuenta-web';
 
   private backgroundImages = [
-    'assets/background/aseo-b.png',
-    'assets/background/acueducto-b.png',
-    'assets/background/gas.png',
-    'assets/background/aseo.png',
-    'assets/background/energia-b.png',
+    'assets/background/background-1.png',
+    'assets/background/background-2.png',
   ];
 
   currentBackground: string = this.setRandomBackground();

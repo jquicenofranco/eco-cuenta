@@ -10,22 +10,22 @@ import { IAnswer } from '../interfaces/answer/answer.interface';
   providedIn: 'root'
 })
 export class AnswerService extends BaseService {
-  private _respuesta: ReplaySubject<string> = new ReplaySubject<string>(1);
+  private _respuesta: ReplaySubject<{ level: string, recommendations: string }> = new ReplaySubject<{ level: string, recommendations: string }>(1);
 
   constructor(private http: HttpClient) { super(); }
 
-  set respuesta(value: string) {
+  set respuesta(value: { level: string, recommendations: string }) {
     this._respuesta.next(value);
   }
-  get respuesta$(): Observable<string> {
+  get respuesta$(): Observable<{ level: string, recommendations: string }> {
     return this._respuesta.asObservable();
   }
 
-  CalculateAnswer(answerSelected: IAnswer): Observable<string> {
+  CalculateAnswer(answerSelected: IAnswer): Observable<{ level: string, recommendations: string }> {
     return this.http.post<IServerResponse>(`${this._urlServer}answer`, answerSelected)
       .pipe(
         tap((r: IServerResponse) => this._respuesta.next(r.data)),
-        map((v: IServerResponse) => v.data as string)
+        map((v: IServerResponse) => v.data as { level: string, recommendations: string })
       );
   }
 }
