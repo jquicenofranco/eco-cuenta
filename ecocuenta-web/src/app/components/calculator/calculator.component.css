@@ -17,4 +17,17 @@ body {
 .responsive-image {
     max-width: 30%;
     height: auto;
-  }
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-option {
+    margin-bottom: 10px;
+}
+
+.form-check input[type="radio"] {
+    margin-right: 10px;
+}

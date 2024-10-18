@@ -17,7 +17,7 @@
                             <h2>{{ currentQuestion.question }}</h2>
 
                             @for (answerq of currentQuestion.answers; track answerq; let i = $index) {
-                                <div class="form-check">
+                                <div class="form-check radio-option">
                                     <input type="radio" [id]="'option' + i" [value]="answerq" [(ngModel)]="selectedAnswer"
                                         name="answer">
                                     <label [for]="'option' + i">{{ answerq.answer }}</label>

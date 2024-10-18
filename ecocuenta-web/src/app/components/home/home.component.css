@@ -12,19 +12,16 @@
 
 /* Contenedor de la imagen SVG */
 .svg-container {
-    display: inline-block;
     position: relative;
-    width: 80%; /* Reducido de 100% a 80% */
-    max-width: 800px; /* Limita el ancho máximo */
-    margin: 0 auto; /* Centra el contenedor */
-    padding-bottom: 45%; /* Ajustado para mantener una relación de aspecto 16:9 */
-    vertical-align: middle;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio */
     overflow: hidden;
 }
 
 /* Imagen SVG */
 .svg-content {
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -34,41 +31,53 @@
 }
 
 /* Media queries para responsividad */
-@media (max-width: 1200px) {
-    .svg-container {
-        width: 90%;
-        max-width: 700px;
-    }
-}
-
-@media (max-width: 992px) {
-    .svg-container {
-        width: 95%;
-        max-width: 600px;
-        padding-bottom: 53.4%; /* Mantiene la relación de aspecto 16:9 */
-    }
-}
-
-@media (max-width: 768px) {
-    .page-section {
-        padding: 2rem 0;
-    }
-    
-    .svg-container {
-        width: 100%;
-        max-width: 500px;
-        padding-bottom: 56.25%; /* Vuelve a la relación de aspecto 16:9 estándar */
-    }
-}
-
-@media (max-width: 576px) {
+@media screen and (max-width: 599px) {
     .page-section {
         padding: 1.5rem 0;
     }
-    
+
     .svg-container {
-        width: 100%;
-        max-width: none;
-        padding-bottom: 75%; /* Cambia a una relación de aspecto 4:3 para pantallas muy pequeñas */
+        padding-top: 75%;
+        /* 4:3 Aspect Ratio para pantallas muy pequeñas */
     }
+}
+
+@media screen and (min-width: 600px) and (max-width: 959px) {
+    .page-section {
+        padding: 2rem 0;
+    }
+}
+
+@media screen and (min-width: 960px) and (max-width: 1279px) {
+    .svg-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .svg-container {
+        width: 80%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.start-button {
+    font-size: 1.2rem;
+    padding: 0.5rem 2rem;
+    background-color: #8bc34a !important;
+    /* Color que combina con #c7e1b6 */
+    color: white !important;
+}
+
+/* Opcional: Efecto hover */
+.start-button:hover {
+    background-color: #7cb342 !important;
 }
