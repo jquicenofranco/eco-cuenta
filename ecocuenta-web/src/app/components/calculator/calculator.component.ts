@@ -101,12 +101,13 @@ export class CalculatorComponent implements OnInit {
     this.currentQuestionIndex = 0;
     this.carbonValue = 0;
     this.imageSrc = 'assets/bajo.png';
+    this.showCalculateBotton = false;
     this.showQuestion(this.currentQuestionIndex);
   }
 
   private openUserInfoDialog() {
     const dialogRef = this.dialog.open(UserDialogComponent, {
-      width: '300px',
+      width: '450px',
       data: { name: '', email: '' }
     });
 

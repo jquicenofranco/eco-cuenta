@@ -19,15 +19,75 @@ body {
     height: auto;
 }
 
-.radio-group {
-    display: flex;
-    flex-direction: column;
-}
-
 .radio-option {
-    margin-bottom: 10px;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
 }
 
+.radio-option:hover {
+    background-color: #f8f9fa;
+}
+
+/* Estilo para el input radio */
 .form-check input[type="radio"] {
-    margin-right: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    margin-right: 12px;
+    position: relative;
+    top: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Círculo interior cuando está seleccionado */
+.form-check input[type="radio"]:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.form-check input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* Estilo para el label */
+.form-check label {
+    font-size: 1.1rem;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    display: inline-block;
+}
+
+/* Efecto hover en todo el contenedor */
+.form-check:hover input[type="radio"] {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Estilo para el estado disabled si lo necesitas */
+.form-check input[type="radio"]:disabled+label {
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* Aseguramos que el contenedor completo sea clickeable */
+.form-check {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
