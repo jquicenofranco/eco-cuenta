@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Política de Uso de Cookies</h1>
+<div mat-dialog-content>
+    <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;text-align:justify;'><strong><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>Usamos cookies para asegurar que te damos la mejor experiencia en nuestro portal de herramientas. Puedes continuar con la navegaci&oacute;n y entenderemos que est&aacute;s de acuerdo con ello.&nbsp;</span>
+    <em><u><span style='font-size:15px;font-family:"Arial",sans-serif;color:#141414;'><a href="javascript: void(0);" (click)="mostrarTexto = !mostrarTexto">Para conocer m&aacute;s de nuestra pol&iacute;tica de uso de cookies</a></span></u></em></strong>
+    </p>
+
+    <div *ngIf="mostrarTexto">
+        <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;text-align:justify;'><br></p>
+        <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;text-align:justify;'><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>La navegaci&oacute;n en nuestro gestor de herramientas utiliza cookies propias con la finalidad de i). Ofrecer una mejor experiencia de navegaci&oacute;n al usuario en las herramientas p&uacute;blicas dispuestas desde el <em>Grupo SUI</em> Para el Sector Energ&iacute;a y Gas - GSSEG, ii). Brindarle informaci&oacute;n de todo tipo al usuario conforme con sus preferencias, previo an&aacute;lisis de sus h&aacute;bitos de navegaci&oacute;n dentro de nuestros servicios expuestos y iii). Optimizar nuestros servicios ofrecidos.</span></p>
+        <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;text-align:justify;'><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>Estas cookies pueden ser:&nbsp;</span></p>
+        <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;text-align:justify;'><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'><strong>1. Por su duraci&oacute;n&nbsp;</strong></span></p>
+        <ol style="list-style-type: lower-roman;">
+            <li style="margin-top: 0in; margin-right: 0in; margin-bottom: 0in; font-size: 16px; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>Son aquellas que &uacute;nicamente permanecen activas mientras el usuario registrado en nuestro gestor de herramientas, haga uso de este, permitiendo identificar al usuario con el fin de personalizar su experiencia. Cookie de sesi&oacute;n. Finalizada la sesi&oacute;n, esta cookie desaparecer&aacute; sin que sean almacenadas en el disco duro del dispositivo.</span></li>
+            <li style="margin-top: 0in; margin-right: 0in; margin-bottom: 0in; font-size: 16px; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>Son aquella programadas directamente por el gestor de herramientas con el fin de realizar el seguimiento al usuario cada vez que se genera una nueva visita. Cookie permanente.</span></li>
+        </ol>
+        <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;text-align:justify;'><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'><strong>2. Por su finalidad&nbsp;</strong></span></p>
+        <ol style="list-style-type: lower-roman;">
+            <li style="margin-top: 0in; margin-right: 0in; margin-bottom: 0in; font-size: 16px; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>Son aquellas indispensables para garantizar la adecuada navegaci&oacute;n, permitiendo el correcto tr&aacute;fico y reconocimiento de datos. Cookies esenciales o t&eacute;cnicas.&nbsp;</span></li>
+            <li style="margin-top: 0in; margin-right: 0in; margin-bottom: 0in; font-size: 16px; font-family: Calibri, sans-serif; text-align: justify;"><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>Son aquellas que permiten la creaci&oacute;n de un perfil de navegaci&oacute;n por usuario, analizando el comportamiento de este y sus preferencias. Cookies de an&aacute;lisis.</span></li>
+        </ol>
+        <p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;text-align:justify;'><span style='font-size:17px;font-family:"Arial",sans-serif;color:#141414;'>Todo usuario puede escoger visitar el gestor de herramientas &nbsp;sin &ldquo;cookies&rdquo;, pero sin estos archivos de identificaci&oacute;n no podr&aacute; beneficiarse de algunas interesantes funciones del gestor. Para visitar el gestor de herramientas sin &ldquo;cookies&rdquo;, puede configurar su navegador para que rechace todas las &ldquo;cookies&rdquo;, o para que le avise cuando se cree una &ldquo;cookie&rdquo;. (Cada navegador es diferente, de modo que deber&aacute; consultar el men&uacute; &quot;Ayuda&quot; del suyo para saber c&oacute;mo modificar sus preferencias con relaci&oacute;n a las &ldquo;cookies&rdquo;.)</span></p>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="RespuestaContrato(false)">Cerrar</button>
+    <button mat-button (click)="RespuestaContrato(true)">Aceptar</button>
+</div>
