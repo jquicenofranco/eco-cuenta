@@ -12,7 +12,7 @@ export class QuestionController {
             const questions = await Question.findAll();
             this._httpResponse.Ok(res, questions);
         } catch (error) {
-            return this._httpResponse.Error(res, error);
+            this._httpResponse.Error(res, error);
         }
     }
 }

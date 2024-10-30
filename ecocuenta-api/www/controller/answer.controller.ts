@@ -17,9 +17,10 @@ export class AnswerController {
             const newAnswer = await Answer.create({ ...answer });
             const weight = newAnswer.answerSelected.reduce((sum, item) => sum + item.weight, 0);
             const suggestions = this.provideDetailedFeedback(weight);
+            
             this._httpResponse.Created(res, suggestions);
         } catch (error) {
-            return this._httpResponse.Error(res, error);
+            this._httpResponse.Error(res, error);
         }
     }
 

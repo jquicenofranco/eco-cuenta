@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { BaseRouter } from "../helpers/router.helper";
 import { AuthController } from "../controller";
+import { BaseRouter } from "../helpers/router.helper";
 import { JwtValidatorMiddleware } from "../middlewares";
+import { Request, Response } from "express";
 
 export class AuthRouter extends BaseRouter<AuthController, JwtValidatorMiddleware> {
     constructor() {

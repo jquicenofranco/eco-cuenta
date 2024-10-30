@@ -11,12 +11,12 @@ export class AuthController {
         try {
             const jwtData: any = await JwtHelper.ValidateJwtWithGestorAsync(req);
 
-            return this._httpResponse.Ok(res, {
+            this._httpResponse.Ok(res, {
                 usuario: jwtData.usuario,
                 accessToken: jwtData.accessToken
             });
         } catch (error) {
-            return this._httpResponse.Error(res, error);
+            this._httpResponse.Error(res, error);
         }
     }
 }
